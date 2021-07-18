@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<title>Truth Or Dare</title>
+	<style>
+		.list-group{
+			max-height: 100px;
+			overflow: auto;
+		}
+		.box-result.active{
+			overflow: hidden;
+		}
+		.box-result.active span{
+			transform: translate(0,-50px);
+			animation: result .3s infinite;
+			display: block;
+		}
+		@keyframes result {
+			from{
+				transform: translate(0,50px);
+			}
+			to{
+				transform: translate(0,-50px);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- As a heading -->
+	<nav class="navbar navbar-dark bg-primary">
+		<div class="container-fluid container">
+			<span class="navbar-brand mb-0 h1">Truth Or Dare</span>
+		</div>
+	</nav>
+
+	<div class="container py-3 text-center">
+		<div style="max-width: 500px;" class="mx-auto border p-3 shadow">
+			<div class="mb-3">
+				<p>Truth / Dare</p>
+				<div class="border p-2 bg-light box-result" id="truth_dare">
+					<span>Truth / Dare</span>
+				</div>
+			</div>
+			<div class="mb-3">
+				<p>Pemain</p>
+				<div class="border p-2 bg-light box-result" id="player_selected">Pemain Dipilih</div>
+			</div>
+			<div class="mb-3">
+				<p>Kebenaran / Tantangan</p>
+				<div class="border p-2 bg-light box-result" id="challenge_selected">Kebenaran / Tantangan</div>
+			</div>
+			<button type="button" class="btn btn-primary d-block w-100 mb-3" id="btnModal" data-bs-toggle="modal" data-bs-target="#modalOption">
+				Opsi
+			</button>
+			<button class="btn btn-danger d-block w-100 mb-3" id="btnStart">Mulai</button>
+
+			<p>&copy; <a href="https://faisalach.github.io/" target="_blank">Muhammad Faisal</a></p>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalOption" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalOptionLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalOptionLabel">Opsi</h5>
+					<!-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button> -->
+				</div>
+				<div class="modal-body">
+					<div class="pb-2 mb-1 border-bottom">
+						<p>Pemain</p>
+						<div class="input-group">
+							<input type="text" id="input_player" class="form-control" placeholder="Nama Pemain">
+							<button class="btn btn-outline-secondary btnSubmitList" data-type="player" type="button">Submit</button>
+						</div>
+						<ul class="list-group" id="list_player">
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="Anton">
+								Anton
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="Doni">
+								Doni
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="Galih">
+								Galih
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="Bambang">
+								Bambang
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="David">
+								David
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+						</ul>
+					</div>
+
+					<div class="pb-2 mb-1 border-bottom">
+						<p>Truth</p>
+						<div class="input-group">
+							<input type="text" id="input_truth" class="form-control" placeholder="Tantangan Truth">
+							<button class="btn btn-outline-secondary btnSubmitList" data-type="truth" type="button">Submit</button>
+						</div>
+						<ul class="list-group" id="list_truth">
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="berapa kli mandi sehari?">
+								berapa kli mandi sehari?
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="siapa nama bapak mu?">
+								siapa nama bapak mu?
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="apa kamu suka seseorang?">
+								apa kamu suka seseorang?
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="berapa nilai ujian paling rendah?">
+								berapa nilai ujian paling rendah?
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="apa rahasia mu?">
+								apa rahasia mu?
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+						</ul>
+					</div>
+
+					<div class="pb-2 mb-1 border-bottom">
+						<p>Dare</p>
+						<div class="input-group">
+							<input type="text" id="input_dare" class="form-control" placeholder="Tantangan Dare">
+							<button class="btn btn-outline-secondary btnSubmitList" data-type="dare" type="button">Submit</button>
+						</div>
+						<ul class="list-group" id="list_dare">
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="lari 5 putaran GBK">
+								lari 5 putaran GBK
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="jajanin aku">
+								jajanin aku
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="push up 20x">
+								push up 20x
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="scott jump 40x">
+								scott jump 40x
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+							<li class="list-group-item d-flex justify-content-between align-items-center" data-title="Gendong anggota menuju rumahnya">
+								Gendong anggota menuju rumahnya
+								<button type="button" class="btn-close btn-sm btnRemoveList"></button>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="index.js"></script>
+</body>
+</html>
